@@ -1,4 +1,4 @@
-package CS143B.JosephMedina;
+package CS143B.josepdm1;
 
 import java.util.LinkedList;
 import java.util.Queue;
