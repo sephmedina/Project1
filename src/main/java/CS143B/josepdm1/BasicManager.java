@@ -1,8 +1,10 @@
 package CS143B.josepdm1;
 
+import CS143B.josepdm1.Exceptions.RCBException;
+import javafx.util.Pair;
+
 import java.util.LinkedList;
 import java.util.Queue;
-import CS143B.josepdm1.Exceptions.SchedulerException;
 
 //todo : add error codes class
 public class BasicManager {
@@ -14,32 +16,22 @@ public class BasicManager {
 	private final int LEVEL = 3;
 
 	private int currentSlot;
-	private PCB currentProcess;
-	private Queue<Integer> waitingList = null;
 	private Queue<Integer>[] readyList = null;
 
 	private PCB[] processes;
-	private RCB[] resources; 
+	private RCB[] resources;
 
-	public Queue<Integer> getWaiting() {
-		return waitingList;
-	}
-	public Queue<Integer>[] getReady() {
-		return readyList;
-	}
-	
 	//initialize manager
 	public BasicManager() {
 		//initialize waiting/ready list(s)
-		waitingList = new LinkedList<Integer>();
-		for (int i = 0; i < readyList.length; ++i) {
+		for (int i = 0; i < LEVEL; ++i) {
 			readyList[i] = new LinkedList<Integer>();
 		}
 		init();
 	}
 
 	//todo TEST
-	public void init() {
+	public String init() {
 		processes = new PCB[N];
 
 		//instantiate resources
@@ -49,143 +41,169 @@ public class BasicManager {
 		resources[2] = new RCB(2);
 		resources[3] = new RCB(3);
 
-		waitingList.clear();
 		for (int i = 0; i < readyList.length; ++i) {
 			readyList[i].clear();
 		}
 		currentSlot = 0;
-		String creation = create(0);
+
+		//special case - creating first process
+		processes[0] = new PCB(0, PCB.READY, null, currentSlot++);
+		readyList[0].add(0);
+		return "0";
 	}
 
 	//todo TEST
 	//note - running process creates child process
 	public String create(int priority) {
-		PCB child = new PCB(priority, 1, currentProcess.getIndex(), currentSlot);
+		PCB child = new PCB(priority, 1, getCurrentProcess().getIndex(), currentSlot);
 		processes[currentSlot] = child;
 		currentSlot = findAvailableIndex();
-		if ( != PCB.BASE_PROCESS) {
-			PCB parent = processes[p];
-			if (parent.getChildren() == null) {
-				parent.setChildren(new LinkedList<Integer>());
-			}
-			parent.getChildren().add(child.getIndex());
-		}
+
+		PCB parent = getCurrentProcess();
+		parent.getChildren().add(child.getIndex());
 
 		readyList[child.getPriority()].add(child.getIndex());
-		try {
-			scheduler(child.getIndex());
-		} catch (SchedulerException e) {
-			return e.toString();
-		}
+		scheduler();
 		return String.format("Process %s is created", child.getIndex());
 	}
 	
-	public String destroy(int process) {
-		return String.format("%s processes destroyed", recursiveDestroy(process));
-	}
-	
-	//destroy process P
-	private int recursiveDestroy(int p) {
-		PCB process = processes[p];
-		Queue<Integer> childList = process.getChildren();
-		
-		//destroy P's children
-		if (childList != null) {
-			for (Integer child: childList) {
-				recursiveDestroy(child);
-			}
+	public String destroy(int p) throws RCBException {
+		if (processes[p] == getCurrentProcess()) {
+			return "Running process can't destroy itself";
 		}
-		//remove P from parent
-		PCB parent = processes[process.getParent()];
-		parent.getChildren().remove(p);
-		
-		//remove from ready/waiting lists
-		waitingList.remove(p);
-		readyList.remove(p);
-		
-		//release resources
-		
-		//release PCB
-		processes[p] = null;
-		return 0;
+		currentSlot = p;
+		return String.format("%s processes destroyed", recursiveDestroy(p));
 	}
-	 
-	public String request(int k, int r) {
-		//check for errors
+
+	//process p requests k units of resource r
+	//todo testing
+	public String request(int p, int k, int r) {
+		//todo check for errors
 		RCB resource = resources[r];
-		PCB process = processes[k];
+		PCB process = processes[p];
 		if (resource == null || process == null) {
 			return "process or resource doesn't exist";
 		}
-		
-		if (resource.getState() == RCB.FREE) {
-			resource.setState(RCB.ALLOCATED);
-			process.addResource(r);
+
+		//enough units available
+		if (k <= resource.getState()) {
+			resource.removeUnits(k);
+			process.addResource(r, k);
 			return String.format("resource %s allocated", r);
-		} 
+		}
+		//not enough units available
 		else {
 			process.setState(PCB.BLOCKED);
-			readyList.remove(k);
-			resource.getWaitlist().add(k);
-			//may switch next two lines 
-			scheduler();
-			return String.format("process %s allocated", k);
+			readyList[ process.getPriority() ].remove(p);
+			resource.getWaitlist().add(new Pair<Integer, Integer>(p, k));
+			return String.format("process %s blocked", p) + "\n" + scheduler();
 		}
 	}
-	
-	public String release(int i, int r) {
+
+	//process p releases all units of resource type r
+	//todo testing
+	public String release(int p, int r) throws RCBException {
 		RCB resource = resources[r];
-		PCB process = processes[i];
+		PCB process = processes[p];
 		if (resource == null || process == null) {
 			return "process or resource doesn't exist";
 		}
-//		process.getResources().remove(r);
-//		Queue<Integer> waitlistR = resource.getWaitlist();
-//		if (waitlistR.isEmpty()) {
-//			resource.setState(RCB.FREE);
-//		}
-//		else {
-//			int j = waitlistR.remove();
-//			//ok j can get unit, but is it actually on the ready list wtf
-//			readyList.add(j);
-//
-//			PCB readyProcess = processes[j];
-//			readyProcess.setState(PCB.READY);
-//			readyProcess.getResources().add(j);
-//		}
-		return String.format("resource %s released", r);
-	}
-	//preemptive scheduling
-	public void timeout() {
-		//readyList.add( readyList.remove() );
-		//scheduler(0);
-	}
-	//do we display lines even if we don't context switch?
-	private String scheduler(int j) throws SchedulerException {
-		/*
-		• create: context switch if new process has higher priority than current
-		• release: context switch if release unblocks a higher‐priority process
-		• delete: context switch if a deleted process releases a resource on which a
-					higher‐level process is blocked
-		 */
-		PCB process = processes[j];
-		if (process.getPriority() > getRunningProcessPriority()) {
-			currentProcess = process;
+		int units = releaseResource(process, r);
+		resource.addUnits(units);
+
+		//unblock units
+		Queue<Pair<Integer, Integer>>  resourceWaitlist = resource.getWaitlist();
+		while (!resourceWaitlist.isEmpty() && resource.getState() > 0) {
+			Pair<Integer, Integer> pair = resourceWaitlist.peek();
+			int requestedUnits = pair.getValue();
+			process = processes[pair.getKey()];
+			if (requestedUnits <= resource.getState()) {
+				resource.removeUnits(requestedUnits);
+				Pair<Integer, Integer> resourcePair = new Pair<Integer, Integer>(r, requestedUnits);
+				process.getResources().add(resourcePair);
+				process.setState(PCB.READY);
+				//todo - make sure process isn't blocked for any other resource
+				readyList[ process.getPriority() ].add(process.getIndex());
+				resourceWaitlist.remove();
+			}
+			else {
+				break;
+			}
 		}
-		return String.format("process %s running", currentProcess.getIndex());
+		return String.format("resource %s released", r) + "\n" + scheduler();
+	}
+
+	//preemptive scheduling
+	//todo testing
+	public String timeout() {
+		PCB current = getCurrentProcess();
+		readyList[ current.getPriority() ].remove();
+		readyList[ current.getPriority() ].add(current.getIndex());
+		return scheduler();
+	}
+
+	private String scheduler() {
+		return String.format("process %s running", schedule().getIndex());
 	}
 
 	/*******************
 	 *  Helper Functions
 	 *  ****************/
 
+	//todo testing
+	//destroy process P
+	private int recursiveDestroy(int p) throws RCBException {
+		PCB process = processes[p];
+		Queue<Integer> childList = process.getChildren();
+		int total = 0;
+		//destroy P's children
+
+		for (Integer child: childList) {
+			total += recursiveDestroy(child);
+		}
+
+		//remove P from parent
+		PCB parent = processes[process.getParent()];
+		parent.getChildren().remove(p);
+
+		//remove from ready list
+		readyList[ process.getPriority() ].remove(p);
+
+		//release resources
+		for (Pair<Integer, Integer> pair : process.getResources()) {
+			release(p, pair.getKey());
+		}
+
+		//release PCB
+		processes[p] = null;
+		return total + 1;
+	}
+	private int releaseResource(PCB p, int r) throws RCBException{
+		for (Pair<Integer, Integer> pair: p.getResources()) {
+			if (pair.getKey() == r) {
+				int units = pair.getValue();
+				p.getResources().remove(pair);
+				return units;
+			}
+		}
+		throw new RCBException( String.format("Process %s isn't allocated resource %s", p.getIndex(), r));
+	}
+	//get the new process that should be running now
+	private PCB schedule() {
+		return getCurrentProcess();
+	}
 	public PCB getCurrentProcess() {
-		return currentProcess;
+		for (int i = readyList.length; ; --i) {
+			if (readyList[i].peek() != null) {
+				return processes[ readyList[i].peek() ];
+			}
+		}
 	}
 
-	private int getRunningProcessPriority() {
-		return currentProcess.getPriority();
+	private int getCurrentProcessPriority() {
+		return getCurrentProcess().getPriority();
 	}
+
 	private int findAvailableIndex() {
 		for (int i = 0; i < N; ++i) {
 			if (processes[i] == null) {
@@ -195,5 +213,4 @@ public class BasicManager {
 		//TODO include descriptive error
 		return -1;
 	}
-
 }

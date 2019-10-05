@@ -24,9 +24,6 @@ public class RCB {
 	public Integer getState() {
 		return state;
 	}
-	public void setState(Integer state) {
-		this.state = state;
-	}
 	public void reduceCount() {
 		--state;
 	}
@@ -34,5 +31,6 @@ public class RCB {
 		++state;
 	}
 
-
+	public void addUnits(int k) { state += k; }
+	public void removeUnits(int k) { state -= k; }
 }
