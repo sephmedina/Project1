@@ -1,5 +1,6 @@
 package CS143B.josepdm1;
 
+import CS143B.josepdm1.Exceptions.PCBException;
 import CS143B.josepdm1.Exceptions.RCBException;
 
 import java.io.File;
@@ -17,7 +18,10 @@ public class Shell {
         final String UCIiD = "70398647";
         PrintStream out = new PrintStream(new FileOutputStream(UCIiD));
         System.setOut(out);
-        BasicManager processManager = new BasicManager();
+        Manager processManager = new Manager();
+        
+        int value;
+        int process;
         while ( scanner.hasNextLine() ) {
             String line = scanner.nextLine();
             //todo check new line too
@@ -41,7 +45,6 @@ public class Shell {
 
             }
             else if (tokens.length == 2) {
-                int value;
                 //todo handle error
                 try {
                     value = getInteger(tokens[1]);
@@ -58,13 +61,25 @@ public class Shell {
                     }
                 }
                 else if (cmd.equals("cr")) {
-
+                    try {
+                        System.out.print( processManager.create(value));
+                    } catch (PCBException e) {
+                        e.printStackTrace();
+                        System.out.println(-1);
+                    }
                 }
                 else {
                     System.out.println(-1);
                 }
             }
             else if (tokens.length == 3) {
+            	try {
+                    process = getInteger(tokens[1]);
+                    value = getInteger(tokens[1]);
+                } catch (NumberFormatException e) {
+                    System.out.println(-1);
+                    continue;
+                }
                 if (cmd.equals("rq")) {
 
                 }

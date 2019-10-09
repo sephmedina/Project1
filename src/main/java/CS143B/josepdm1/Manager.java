@@ -1,5 +1,6 @@
 package CS143B.josepdm1;
 
+import CS143B.josepdm1.Exceptions.PCBException;
 import CS143B.josepdm1.Exceptions.RCBException;
 import javafx.util.Pair;
 
@@ -7,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 //todo : add error codes class
-public class BasicManager {
+public class Manager {
 	/* values for # of processes, resource TYPES */
 	private final int N = 16;
 	private final int R = 4;
@@ -20,9 +21,9 @@ public class BasicManager {
 
 	private PCB[] processes;
 	private RCB[] resources;
-
+	private int size;
 	//initialize manager
-	public BasicManager() {
+	public Manager() {
 		//initialize waiting/ready list(s)
 		for (int i = 0; i < LEVEL; ++i) {
 			readyList[i] = new LinkedList<Integer>();
@@ -49,19 +50,23 @@ public class BasicManager {
 		//special case - creating first process
 		processes[0] = new PCB(0, PCB.READY, null, currentSlot++);
 		readyList[0].add(0);
+		size = 1;
 		return "0";
 	}
 
 	//todo TEST
 	//note - running process creates child process
-	public String create(int priority) {
+	public String create(int priority) throws PCBException{
+		if (++size > 16) {
+			throw new PCBException("Too many processes");
+		}
 		PCB child = new PCB(priority, 1, getCurrentProcess().getIndex(), currentSlot);
 		processes[currentSlot] = child;
 		currentSlot = findAvailableIndex();
-
+		
 		PCB parent = getCurrentProcess();
 		parent.getChildren().add(child.getIndex());
-
+		
 		readyList[child.getPriority()].add(child.getIndex());
 		scheduler();
 		return String.format("Process %s is created", child.getIndex());
