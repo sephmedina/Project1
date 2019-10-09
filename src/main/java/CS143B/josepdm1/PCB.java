@@ -1,5 +1,6 @@
 package CS143B.josepdm1;
 
+import CS143B.josepdm1.Exceptions.PCBException;
 import javafx.util.Pair;
 
 import java.util.LinkedList;
@@ -53,6 +54,30 @@ public class PCB {
 	}
 
 	public void addResource(int r, int k) {
-		resources.add( new Pair<Integer, Integer>(r, k));
+		//check if resource exists already
+		int existingValue = 0;
+		for (Pair<Integer, Integer> pair: resources) {
+			if (pair.getKey() == r) {
+				existingValue = pair.getValue();
+				resources.remove(pair);
+			}
+		}
+		resources.add( new Pair<Integer, Integer>(r, k + existingValue));
+	}
+//	public boolean hasResource(int r) {
+//		for (Pair<Integer, Integer> pair: resources) {
+//			if (pair.getKey() == r) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+	public boolean hasEnoughResourceUnits(int r, int n) throws PCBException {
+		for (Pair<Integer, Integer> pair: resources) {
+			if (pair.getKey() == r) {
+				return pair.getValue() >= n;
+			}
+		}
+		throw new PCBException("Process doesn't contain any units of r");
 	}
 }

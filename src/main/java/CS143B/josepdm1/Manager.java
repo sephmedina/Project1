@@ -72,7 +72,7 @@ public class Manager {
 		return String.format("Process %s is created", child.getIndex());
 	}
 	
-	public String destroy(int p) throws RCBException {
+	public String destroy(int p) throws RCBException, PCBException {
 		if (processes[p] == getCurrentProcess()) {
 			return "Running process can't destroy itself";
 		}
@@ -82,10 +82,12 @@ public class Manager {
 
 	//process p requests k units of resource r
 	//todo testing
-	public String request(int p, int k, int r) {
+	public String request(int k, int r) {
 		//todo check for errors
+		//error ? process has already requested units
 		RCB resource = resources[r];
-		PCB process = processes[p];
+		PCB process = getCurrentProcess();
+		int p = process.getIndex();
 		if (resource == null || process == null) {
 			return "process or resource doesn't exist";
 		}
@@ -105,18 +107,25 @@ public class Manager {
 		}
 	}
 
-	//process p releases all units of resource type r
+	//current process releases n units of resource r
 	//todo testing
-	public String release(int p, int r) throws RCBException {
+	public String release(int r, int n) throws PCBException, RCBException {
 		RCB resource = resources[r];
-		PCB process = processes[p];
+		PCB process = getCurrentProcess();
 		if (resource == null || process == null) {
 			return "process or resource doesn't exist";
 		}
-		int units = releaseResource(process, r);
-		resource.addUnits(units);
+		//todo check
+		//does process have r resource
+		if (!process.hasEnoughResourceUnits(r, n)) {
+			throw new PCBException("Process doesn't contain enough units of r");
+		}
 
-		//unblock units
+		//process will release enough units, adds back to resource
+		int leftoverUnits = releaseResource(process, r, n);
+		resource.addUnits(leftoverUnits);
+
+		//unblock processes that are waiting
 		Queue<Pair<Integer, Integer>>  resourceWaitlist = resource.getWaitlist();
 		while (!resourceWaitlist.isEmpty() && resource.getState() > 0) {
 			Pair<Integer, Integer> pair = resourceWaitlist.peek();
@@ -126,8 +135,8 @@ public class Manager {
 				resource.removeUnits(requestedUnits);
 				Pair<Integer, Integer> resourcePair = new Pair<Integer, Integer>(r, requestedUnits);
 				process.getResources().add(resourcePair);
-				process.setState(PCB.READY);
 				//todo - make sure process isn't blocked for any other resource
+				process.setState(PCB.READY);
 				readyList[ process.getPriority() ].add(process.getIndex());
 				resourceWaitlist.remove();
 			}
@@ -157,7 +166,7 @@ public class Manager {
 
 	//todo testing
 	//destroy process P
-	private int recursiveDestroy(int p) throws RCBException {
+	private int recursiveDestroy(int p) throws RCBException, PCBException {
 		PCB process = processes[p];
 		Queue<Integer> childList = process.getChildren();
 		int total = 0;
@@ -183,12 +192,17 @@ public class Manager {
 		processes[p] = null;
 		return total + 1;
 	}
-	private int releaseResource(PCB p, int r) throws RCBException{
+
+	private int releaseResource(PCB p, int r, int n) throws RCBException{
 		for (Pair<Integer, Integer> pair: p.getResources()) {
 			if (pair.getKey() == r) {
 				int units = pair.getValue();
+				int leftoverUnits = units - n;
 				p.getResources().remove(pair);
-				return units;
+				if (leftoverUnits > 0) {
+					p.getResources().add(new Pair<Integer, Integer>(r, leftoverUnits));
+				}
+				return leftoverUnits;
 			}
 		}
 		throw new RCBException( String.format("Process %s isn't allocated resource %s", p.getIndex(), r));

@@ -21,7 +21,7 @@ public class Shell {
         Manager processManager = new Manager();
         
         int value;
-        int process;
+        int resource;
         while ( scanner.hasNextLine() ) {
             String line = scanner.nextLine();
             //todo check new line too
@@ -59,6 +59,10 @@ public class Shell {
                         e.printStackTrace();
                         System.out.println(-1);
                     }
+                    catch (PCBException e) {
+                        e.printStackTrace();
+                        System.out.println(-1);
+                    }
                 }
                 else if (cmd.equals("cr")) {
                     try {
@@ -74,23 +78,32 @@ public class Shell {
             }
             else if (tokens.length == 3) {
             	try {
-                    process = getInteger(tokens[1]);
-                    value = getInteger(tokens[1]);
+                    resource = getInteger(tokens[1]);
+                    value = getInteger(tokens[2]);
                 } catch (NumberFormatException e) {
                     System.out.println(-1);
                     continue;
                 }
                 if (cmd.equals("rq")) {
-
+                    System.out.print( processManager.request(resource, value));
                 }
                 else if (cmd.equals("rl")) {
-
+                    try {
+                        System.out.print( processManager.release(resource, value));
+                    } catch (PCBException e) {
+                        System.out.println(-1);
+                        continue;
+                    } catch (RCBException e) {
+                        System.out.println(-1);
+                        continue;
+                    }
                 }
 
             }
             //bad input?
             else {
-
+                System.out.println(-1);
+                continue;
             }
         }
         return;
