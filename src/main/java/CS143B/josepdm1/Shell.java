@@ -7,9 +7,26 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Calendar;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 public class Shell {
-    public static void Main(String[] args) throws IOException {
+    private final static Logger LOG = Logger.getLogger(Shell.class.getName());
+    static {
+        FileHandler fh = null;
+        try {
+            fh = new FileHandler("log.txt");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        fh.setFormatter(new SimpleFormatter());
+        LOG.addHandler(fh);
+    }
+    public static void main(String[] args) throws IOException {
         //pass in file name as first arg
         //reading input
         File file = new File(args[0]);
@@ -19,7 +36,7 @@ public class Shell {
         PrintStream out = new PrintStream(new FileOutputStream(UCIiD));
         System.setOut(out);
         Manager processManager = new Manager();
-        
+        LOG.info("TESTING");
         int value;
         int resource;
         while ( scanner.hasNextLine() ) {
@@ -28,6 +45,7 @@ public class Shell {
             if (line.equals("") || line.equals("\n")) {
                 continue;
             }
+            LOG.info("input: " + line);
             String[] tokens = line.split(" ");
             String cmd = tokens[0];
             //process input
