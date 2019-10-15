@@ -64,7 +64,20 @@ public class PCB {
 		}
 		resources.add( new Pair<Integer, Integer>(r, k + existingValue));
 	}
-//	public boolean hasResource(int r) {
+
+	@Override
+	public String toString() {
+		return "\nPCB{" +
+				"state=" + state +
+				", parent=" + parent +
+				", children=" + children +
+				", resources=" + resources +
+				", priority=" + priority +
+				", index=" + index +
+				'}';
+	}
+
+	//	public boolean hasResource(int r) {
 //		for (Pair<Integer, Integer> pair: resources) {
 //			if (pair.getKey() == r) {
 //				return true;

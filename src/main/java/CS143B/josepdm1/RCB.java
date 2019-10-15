@@ -21,6 +21,14 @@ public class RCB {
 		return waitlist;
 	}
 
+	@Override
+	public String toString() {
+		return "\nRCB{" +
+				"state=" + state +
+				", waitlist=" + waitlist +
+				'}';
+	}
+
 	public Integer getState() {
 		return state;
 	}

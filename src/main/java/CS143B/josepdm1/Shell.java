@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Calendar;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -29,18 +28,20 @@ public class Shell {
     public static void main(String[] args) throws IOException {
         //pass in file name as first arg
         //reading input
+        System.out.println(args[0]);
         File file = new File(args[0]);
         Scanner scanner = new Scanner(file);
+
         //writing to file
-        final String UCIiD = "70398647";
+        final String UCIiD = "70398647.txt";
         PrintStream out = new PrintStream(new FileOutputStream(UCIiD));
         System.setOut(out);
         Manager processManager = new Manager();
-        LOG.info("TESTING");
         int value;
         int resource;
         while ( scanner.hasNextLine() ) {
             String line = scanner.nextLine();
+            System.out.println("input: " + line);
             //todo check new line too
             if (line.equals("") || line.equals("\n")) {
                 continue;
@@ -123,7 +124,9 @@ public class Shell {
                 System.out.println(-1);
                 continue;
             }
+            System.out.println(processManager.toString() + "\n");
         }
+        scanner.close();
         return;
     }
     private static int getInteger(String token) throws NumberFormatException{

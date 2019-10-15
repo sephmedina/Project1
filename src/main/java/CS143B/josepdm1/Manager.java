@@ -4,6 +4,7 @@ import CS143B.josepdm1.Exceptions.PCBException;
 import CS143B.josepdm1.Exceptions.RCBException;
 import javafx.util.Pair;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -21,10 +22,28 @@ public class Manager {
 
 	private PCB[] processes;
 	private RCB[] resources;
+
+	public int getSize() {
+		return size;
+	}
+
 	private int size;
+
+	@Override
+	public String toString() {
+		return "Manager{" +
+				", \ncurrentSlot=" + currentSlot +
+				", \nreadyList=" + Arrays.toString(readyList) +
+				", \nprocesses=" + Arrays.toString(processes) +
+				", \nresources=" + Arrays.toString(resources) +
+				", \nsize=" + size +
+				", \ncurrentProcess=" + getCurrentProcess().getIndex() + "}";
+	}
+
 	//initialize manager
 	public Manager() {
 		//initialize waiting/ready list(s)
+		readyList = new Queue[LEVEL];
 		for (int i = 0; i < LEVEL; ++i) {
 			readyList[i] = new LinkedList<Integer>();
 		}
@@ -33,14 +52,13 @@ public class Manager {
 
 	//todo TEST
 	public String init() {
-		processes = new PCB[N];
-
 		//instantiate resources
 		resources = new RCB[R];
 		resources[0] = new RCB(1);
 		resources[1] = new RCB(1);
 		resources[2] = new RCB(2);
 		resources[3] = new RCB(3);
+		processes = new PCB[N];
 
 		for (int i = 0; i < readyList.length; ++i) {
 			readyList[i].clear();
@@ -54,10 +72,10 @@ public class Manager {
 		return "0";
 	}
 
-	//todo TEST
 	//note - running process creates child process
 	public String create(int priority) throws PCBException{
 		if (++size > 16) {
+			size -= 1;
 			throw new PCBException("Too many processes");
 		}
 		PCB child = new PCB(priority, 1, getCurrentProcess().getIndex(), currentSlot);
@@ -76,15 +94,17 @@ public class Manager {
 		if (processes[p] == getCurrentProcess()) {
 			return "Running process can't destroy itself";
 		}
-		currentSlot = p;
-		return String.format("%s processes destroyed", recursiveDestroy(p));
+		if (getCurrentProcess().getChildren().contains(p)) {
+			currentSlot = p;
+			return String.format("%s processes destroyed", recursiveDestroy(p));
+		}
+		throw new PCBException("Process " + p + " is not a child of process " + getCurrentProcess().getIndex());
 	}
 
-	//process p requests k units of resource r
 	//todo testing
-	public String request(int k, int r) {
+	public String request(int r, int k) {
 		//todo check for errors
-		//error ? process has already requested units
+		//error ? process has already requested units, just add 1 more
 		RCB resource = resources[r];
 		PCB process = getCurrentProcess();
 		int p = process.getIndex();
@@ -115,8 +135,7 @@ public class Manager {
 		if (resource == null || process == null) {
 			return "process or resource doesn't exist";
 		}
-		//todo check
-		//does process have r resource
+		//does process have n units of resource r
 		if (!process.hasEnoughResourceUnits(r, n)) {
 			throw new PCBException("Process doesn't contain enough units of r");
 		}
@@ -135,10 +154,13 @@ public class Manager {
 				resource.removeUnits(requestedUnits);
 				Pair<Integer, Integer> resourcePair = new Pair<Integer, Integer>(r, requestedUnits);
 				process.getResources().add(resourcePair);
-				//todo - make sure process isn't blocked for any other resource
-				process.setState(PCB.READY);
-				readyList[ process.getPriority() ].add(process.getIndex());
 				resourceWaitlist.remove();
+
+				//check if process isnt blocked, to be put into ready list
+				if (notBlocked(process.getIndex())) {
+					process.setState(PCB.READY);
+					readyList[ process.getPriority() ].add(process.getIndex());
+				}
 			}
 			else {
 				break;
@@ -148,7 +170,6 @@ public class Manager {
 	}
 
 	//preemptive scheduling
-	//todo testing
 	public String timeout() {
 		PCB current = getCurrentProcess();
 		readyList[ current.getPriority() ].remove();
@@ -163,15 +184,13 @@ public class Manager {
 	/*******************
 	 *  Helper Functions
 	 *  ****************/
-
-	//todo testing
 	//destroy process P
 	private int recursiveDestroy(int p) throws RCBException, PCBException {
 		PCB process = processes[p];
 		Queue<Integer> childList = process.getChildren();
 		int total = 0;
-		//destroy P's children
 
+		//destroy P's children
 		for (Integer child: childList) {
 			total += recursiveDestroy(child);
 		}
@@ -187,6 +206,9 @@ public class Manager {
 		for (Pair<Integer, Integer> pair : process.getResources()) {
 			release(p, pair.getKey());
 		}
+		//remove from waitlist(s)
+		//todo
+
 
 		//release PCB
 		processes[p] = null;
@@ -207,20 +229,17 @@ public class Manager {
 		}
 		throw new RCBException( String.format("Process %s isn't allocated resource %s", p.getIndex(), r));
 	}
-	//get the new process that should be running now
+
 	private PCB schedule() {
 		return getCurrentProcess();
 	}
+
 	public PCB getCurrentProcess() {
-		for (int i = readyList.length; ; --i) {
+		for (int i = readyList.length - 1; ; --i) {
 			if (readyList[i].peek() != null) {
 				return processes[ readyList[i].peek() ];
 			}
 		}
-	}
-
-	private int getCurrentProcessPriority() {
-		return getCurrentProcess().getPriority();
 	}
 
 	private int findAvailableIndex() {
@@ -231,5 +250,16 @@ public class Manager {
 		}
 		//TODO include descriptive error
 		return -1;
+	}
+	private boolean notBlocked(int p) {
+		for (int i = 0; i < resources.length; ++i) {
+			RCB resource = resources[i];
+			for (Pair<Integer, Integer> pair: resource.getWaitlist()) {
+				if (pair.getKey() == p) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
