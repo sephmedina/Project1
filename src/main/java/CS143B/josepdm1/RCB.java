@@ -1,5 +1,6 @@
 package CS143B.josepdm1;
 
+import CS143B.josepdm1.Exceptions.RCBException;
 import javafx.util.Pair;
 
 import java.util.LinkedList;
@@ -41,4 +42,12 @@ public class RCB {
 
 	public void addUnits(int k) { state += k; }
 	public void removeUnits(int k) { state -= k; }
+	public void removeFromWaitlist(int p) {
+		for (Pair<Integer, Integer> pair : getWaitlist()) {
+			if (pair.getKey() == p) {
+				waitlist.remove(pair);
+			}
+		}
+	}
+
 }

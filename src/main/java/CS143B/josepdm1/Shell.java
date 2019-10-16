@@ -2,6 +2,7 @@ package CS143B.josepdm1;
 
 import CS143B.josepdm1.Exceptions.PCBException;
 import CS143B.josepdm1.Exceptions.RCBException;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,12 +42,11 @@ public class Shell {
         int resource;
         while ( scanner.hasNextLine() ) {
             String line = scanner.nextLine();
-            System.out.println("input: " + line);
+//            System.out.println("input: " + line);
             //todo check new line too
             if (line.equals("") || line.equals("\n")) {
                 continue;
             }
-            LOG.info("input: " + line);
             String[] tokens = line.split(" ");
             String cmd = tokens[0];
             //process input
@@ -75,11 +75,11 @@ public class Shell {
                     try {
                         System.out.print( processManager.destroy(value));
                     } catch (RCBException e) {
-                        e.printStackTrace();
+                        LOG.info(ExceptionUtils.getStackTrace(e));
                         System.out.println(-1);
                     }
                     catch (PCBException e) {
-                        e.printStackTrace();
+                        LOG.info( ExceptionUtils.getStackTrace(e) );
                         System.out.println(-1);
                     }
                 }
@@ -87,7 +87,7 @@ public class Shell {
                     try {
                         System.out.print( processManager.create(value));
                     } catch (PCBException e) {
-                        e.printStackTrace();
+                        LOG.info( ExceptionUtils.getStackTrace(e) );
                         System.out.println(-1);
                     }
                 }
@@ -110,9 +110,11 @@ public class Shell {
                     try {
                         System.out.print( processManager.release(resource, value));
                     } catch (PCBException e) {
+                        LOG.info( ExceptionUtils.getStackTrace(e) );
                         System.out.println(-1);
                         continue;
                     } catch (RCBException e) {
+                        LOG.info( ExceptionUtils.getStackTrace(e) );
                         System.out.println(-1);
                         continue;
                     }
@@ -124,7 +126,8 @@ public class Shell {
                 System.out.println(-1);
                 continue;
             }
-            System.out.println(processManager.toString() + "\n");
+//            System.out.println(processManager.toString() + "\n");
+            LOG.info("input: " + line + "\n" + processManager.toString() + "\n");
         }
         scanner.close();
         return;

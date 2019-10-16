@@ -7,9 +7,24 @@ import javafx.util.Pair;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 //todo : add error codes class
 public class Manager {
+	private final static Logger LOG = Logger.getLogger(Shell.class.getName());
+	static {
+		FileHandler fh = null;
+		try {
+			fh = new FileHandler("log.txt");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		fh.setFormatter(new SimpleFormatter());
+		LOG.addHandler(fh);
+	}
 	/* values for # of processes, resource TYPES */
 	private final int N = 16;
 	private final int R = 4;
@@ -26,23 +41,19 @@ public class Manager {
 	public int getSize() {
 		return size;
 	}
-
 	private int size;
 
 	@Override
 	public String toString() {
-		return "Manager{" +
+		return "Manager{ RUNNING=" + getCurrentProcess().getIndex() +
 				", \ncurrentSlot=" + currentSlot +
 				", \nreadyList=" + Arrays.toString(readyList) +
 				", \nprocesses=" + Arrays.toString(processes) +
 				", \nresources=" + Arrays.toString(resources) +
-				", \nsize=" + size +
-				", \ncurrentProcess=" + getCurrentProcess().getIndex() + "}";
+				", \nsize=" + size;
 	}
 
-	//initialize manager
 	public Manager() {
-		//initialize waiting/ready list(s)
 		readyList = new Queue[LEVEL];
 		for (int i = 0; i < LEVEL; ++i) {
 			readyList[i] = new LinkedList<Integer>();
@@ -50,7 +61,6 @@ public class Manager {
 		init();
 	}
 
-	//todo TEST
 	public String init() {
 		//instantiate resources
 		resources = new RCB[R];
@@ -69,7 +79,7 @@ public class Manager {
 		processes[0] = new PCB(0, PCB.READY, null, currentSlot++);
 		readyList[0].add(0);
 		size = 1;
-		return "0";
+		return "0 ";
 	}
 
 	//note - running process creates child process
@@ -87,16 +97,18 @@ public class Manager {
 		
 		readyList[child.getPriority()].add(child.getIndex());
 		scheduler();
-		return String.format("Process %s is created", child.getIndex());
+//		return String.format("Process %s  is created", child.getIndex());
+//		return String.format("%s ", child.getIndex());
+		return scheduler();
 	}
 	
 	public String destroy(int p) throws RCBException, PCBException {
-		if (processes[p] == getCurrentProcess()) {
-			return "Running process can't destroy itself";
-		}
-		if (getCurrentProcess().getChildren().contains(p)) {
+		if (getCurrentProcess().getChildren().contains(p) || p == getCurrentProcess().getIndex()) {
 			currentSlot = p;
-			return String.format("%s processes destroyed", recursiveDestroy(p));
+			recursiveDestroy(p);
+//			return String.format("%s  processes destroyed", recursiveDestroy(p));
+//			return String.format("%s ", recursiveDestroy(p));
+			return scheduler();
 		}
 		throw new PCBException("Process " + p + " is not a child of process " + getCurrentProcess().getIndex());
 	}
@@ -108,23 +120,22 @@ public class Manager {
 		RCB resource = resources[r];
 		PCB process = getCurrentProcess();
 		int p = process.getIndex();
-		if (resource == null || process == null) {
-			return "process or resource doesn't exist";
-		}
 
 		//enough units available
 		if (k <= resource.getState()) {
 			resource.removeUnits(k);
 			process.addResource(r, k);
-			return String.format("resource %s allocated", r);
+//			return String.format("resource %s  allocated", r);
+//			return String.format("%s ", r);
 		}
 		//not enough units available
 		else {
 			process.setState(PCB.BLOCKED);
 			readyList[ process.getPriority() ].remove(p);
 			resource.getWaitlist().add(new Pair<Integer, Integer>(p, k));
-			return String.format("process %s blocked", p) + "\n" + scheduler();
+//			return String.format("process %s  blocked", p) + "\n" + scheduler();
 		}
+		return scheduler();
 	}
 
 	//current process releases n units of resource r
@@ -166,7 +177,8 @@ public class Manager {
 				break;
 			}
 		}
-		return String.format("resource %s released", r) + "\n" + scheduler();
+//		return String.format("resource %s  released", r) + "\n" + scheduler();
+		return scheduler();
 	}
 
 	//preemptive scheduling
@@ -178,7 +190,7 @@ public class Manager {
 	}
 
 	private String scheduler() {
-		return String.format("process %s running", schedule().getIndex());
+		return String.format("%s ", schedule().getIndex());
 	}
 
 	/*******************
@@ -191,7 +203,8 @@ public class Manager {
 		int total = 0;
 
 		//destroy P's children
-		for (Integer child: childList) {
+		while (!childList.isEmpty()) {
+			int child = childList.remove();
 			total += recursiveDestroy(child);
 		}
 
@@ -204,11 +217,11 @@ public class Manager {
 
 		//release resources
 		for (Pair<Integer, Integer> pair : process.getResources()) {
-			release(p, pair.getKey());
+			releaseResource(process, pair.getKey(), pair.getValue());
 		}
-		//remove from waitlist(s)
-		//todo
 
+		//remove from other waitlists
+		removeFromWaitlists(p);
 
 		//release PCB
 		processes[p] = null;
@@ -227,7 +240,7 @@ public class Manager {
 				return leftoverUnits;
 			}
 		}
-		throw new RCBException( String.format("Process %s isn't allocated resource %s", p.getIndex(), r));
+		throw new RCBException( String.format("Process %s  isn't allocated resource %s ", p.getIndex(), r));
 	}
 
 	private PCB schedule() {
@@ -261,5 +274,10 @@ public class Manager {
 			}
 		}
 		return true;
+	}
+	private void removeFromWaitlists(int p) {
+		for (int i = 0; i < resources.length; ++i) {
+			resources[i].removeFromWaitlist(p);
+		}
 	}
 }

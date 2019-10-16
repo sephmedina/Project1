@@ -91,6 +91,6 @@ public class PCB {
 				return pair.getValue() >= n;
 			}
 		}
-		throw new PCBException("Process doesn't contain any units of r");
+		throw new PCBException(String.format("Process %s doesn't contain %s units of resource %s", index, n, r));
 	}
 }
