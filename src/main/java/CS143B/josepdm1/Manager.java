@@ -13,7 +13,7 @@ import java.util.logging.SimpleFormatter;
 
 //todo : add error codes class
 public class Manager {
-	private final static Logger LOG = Logger.getLogger(Shell.class.getName());
+	private final static Logger LOG = Logger.getLogger(Manager.class.getName());
 	static {
 		FileHandler fh = null;
 		try {
@@ -25,6 +25,7 @@ public class Manager {
 		fh.setFormatter(new SimpleFormatter());
 		LOG.addHandler(fh);
 	}
+
 	/* values for # of processes, resource TYPES */
 	private final int N = 16;
 	private final int R = 4;
@@ -106,8 +107,6 @@ public class Manager {
 		if (getCurrentProcess().getChildren().contains(p) || p == getCurrentProcess().getIndex()) {
 			currentSlot = p;
 			recursiveDestroy(p);
-//			return String.format("%s  processes destroyed", recursiveDestroy(p));
-//			return String.format("%s ", recursiveDestroy(p));
 			return scheduler();
 		}
 		throw new PCBException("Process " + p + " is not a child of process " + getCurrentProcess().getIndex());
@@ -155,23 +154,14 @@ public class Manager {
 		int leftoverUnits = releaseResource(process, r, n);
 		resource.addUnits(leftoverUnits);
 
-		//unblock processes that are waiting
+		//unblock process that's waiting
 		Queue<Pair<Integer, Integer>>  resourceWaitlist = resource.getWaitlist();
 		while (!resourceWaitlist.isEmpty() && resource.getState() > 0) {
 			Pair<Integer, Integer> pair = resourceWaitlist.peek();
-			int requestedUnits = pair.getValue();
 			process = processes[pair.getKey()];
+			int requestedUnits = pair.getValue();
 			if (requestedUnits <= resource.getState()) {
-				resource.removeUnits(requestedUnits);
-				Pair<Integer, Integer> resourcePair = new Pair<Integer, Integer>(r, requestedUnits);
-				process.getResources().add(resourcePair);
-				resourceWaitlist.remove();
-
-				//check if process isnt blocked, to be put into ready list
-				if (notBlocked(process.getIndex())) {
-					process.setState(PCB.READY);
-					readyList[ process.getPriority() ].add(process.getIndex());
-				}
+				unblock(r);
 			}
 			else {
 				break;
@@ -217,12 +207,16 @@ public class Manager {
 
 		//release resources
 		for (Pair<Integer, Integer> pair : process.getResources()) {
-			releaseResource(process, pair.getKey(), pair.getValue());
+			int r = pair.getKey();
+			int units = pair.getValue();
+			releaseResource(process, r, units);
+			unblock(r);
 		}
 
 		//remove from other waitlists
 		removeFromWaitlists(p);
 
+		//todo after release, give units to other resources
 		//release PCB
 		processes[p] = null;
 		return total + 1;
@@ -248,7 +242,7 @@ public class Manager {
 	}
 
 	public PCB getCurrentProcess() {
-		for (int i = readyList.length - 1; ; --i) {
+		for (int i = readyList.length - 1;   ; --i) {
 			if (readyList[i].peek() != null) {
 				return processes[ readyList[i].peek() ];
 			}
@@ -278,6 +272,31 @@ public class Manager {
 	private void removeFromWaitlists(int p) {
 		for (int i = 0; i < resources.length; ++i) {
 			resources[i].removeFromWaitlist(p);
+		}
+	}
+
+	//unblock the process from resource's waitlist
+	private void unblock(int r) {
+		RCB resource = resources[r];
+		if (resource.getWaitlist().isEmpty()) {
+			return;
+		}
+		Pair<Integer, Integer> pair = resource.getWaitlist().peek();
+		PCB process = processes[pair.getKey()];
+		int units = pair.getValue();
+
+		//remove units from resource
+		resource.removeUnits(units);
+		Pair<Integer, Integer> resourcePair = new Pair<Integer, Integer>(r, units);
+		resource.getWaitlist().remove();
+
+		//add units to process
+		process.getResources().add(resourcePair);
+
+		//check if process isnt blocked, to be put into ready list
+		if (notBlocked(process.getIndex())) {
+			process.setState(PCB.READY);
+			readyList[ process.getPriority() ].add(process.getIndex());
 		}
 	}
 }

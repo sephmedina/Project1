@@ -2,6 +2,7 @@ package CS143B.josepdm1;
 
 import CS143B.josepdm1.Exceptions.PCBException;
 import CS143B.josepdm1.Exceptions.RCBException;
+import javafx.util.Pair;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -82,6 +83,50 @@ public class ProcessManagerTest {
     void testRelease() {
         Manager processManager = new Manager();
 
+        try {
+            processManager.create(1);
+            //request
+            //current process request resource R for K units
+            processManager.request(0, 1);
+
+            PCB firstProcess = processManager.getCurrentProcess();
+            assert firstProcess.getResources().size() == 1;
+
+            processManager.create(2);
+            PCB secondProcess = processManager.getCurrentProcess();
+            processManager.request(1, 1);
+
+            /*** releasing a held resource with LESS units: process should KEEP resource ***/
+            System.out.println("releasing a held resource with LESS units: process should KEEP resource");
+            int units = 3;
+            int r4 = 3;
+            processManager.request(r4, units);
+            assert secondProcess.getResources().size() == 2;
+
+            units = units - 2;
+            processManager.release(r4, units);
+            assert secondProcess.getResources().size() == 2;
+
+            /*** unblocking a HIGHER priority process ***/
+            System.out.println("unblocking a HIGHER priority process");
+            //secondProcess should be blocked
+            processManager.request(0, 1); //firstProcess now running
+
+            System.out.println(processManager.toString());
+            processManager.release(0, 1);
+            System.out.println(processManager.toString());
+
+            assert firstProcess.getResources().size() == 0;
+            assert secondProcess.getResources().size() == 2;
+            assert processManager.getCurrentProcess() == secondProcess;
+
+            /*** unblocking a LOWER priority process ***/
+
+        } catch (PCBException e) {
+
+        } catch (RCBException e) {
+
+        }
     }
 
     @DisplayName("Test Manager.timeout()")

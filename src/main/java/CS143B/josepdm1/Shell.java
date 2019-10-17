@@ -27,9 +27,6 @@ public class Shell {
         LOG.addHandler(fh);
     }
     public static void main(String[] args) throws IOException {
-        //pass in file name as first arg
-        //reading input
-        System.out.println(args[0]);
         File file = new File(args[0]);
         Scanner scanner = new Scanner(file);
 
@@ -40,21 +37,21 @@ public class Shell {
         Manager processManager = new Manager();
         int value;
         int resource;
+
+        /*** PROCESSING INPUT ***/
         while ( scanner.hasNextLine() ) {
             String line = scanner.nextLine();
-//            System.out.println("input: " + line);
-            //todo check new line too
+            LOG.info("input: " + line + "     RUNNING: " + processManager.getCurrentProcess().getIndex());
             if (line.equals("") || line.equals("\n")) {
                 continue;
             }
+
             String[] tokens = line.split(" ");
             String cmd = tokens[0];
-            //process input
             if (tokens.length == 1) {
                 if (cmd.equals("to")) {
                     System.out.print( processManager.timeout() );
                 }
-                //todo clarify - 1) will in always be called first 2)will in always be after an explicit error? or do we have to call in ourselves after an error
                 else if (cmd.equals("in")) {
                     System.out.print( processManager.init() );
                 }
@@ -127,7 +124,7 @@ public class Shell {
                 continue;
             }
 //            System.out.println(processManager.toString() + "\n");
-            LOG.info("input: " + line + "\n" + processManager.toString() + "\n");
+            LOG.info(processManager.toString() + "\n");
         }
         scanner.close();
         return;

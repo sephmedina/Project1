@@ -56,12 +56,15 @@ public class PCB {
 	public void addResource(int r, int k) {
 		//check if resource exists already
 		int existingValue = 0;
+		Pair p = null;
 		for (Pair<Integer, Integer> pair: resources) {
 			if (pair.getKey() == r) {
 				existingValue = pair.getValue();
-				resources.remove(pair);
+				p = pair;
+				break;
 			}
 		}
+		resources.remove(p);
 		resources.add( new Pair<Integer, Integer>(r, k + existingValue));
 	}
 
@@ -77,14 +80,6 @@ public class PCB {
 				'}';
 	}
 
-	//	public boolean hasResource(int r) {
-//		for (Pair<Integer, Integer> pair: resources) {
-//			if (pair.getKey() == r) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
 	public boolean hasEnoughResourceUnits(int r, int n) throws PCBException {
 		for (Pair<Integer, Integer> pair: resources) {
 			if (pair.getKey() == r) {

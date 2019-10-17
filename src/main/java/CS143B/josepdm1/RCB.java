@@ -46,6 +46,7 @@ public class RCB {
 		for (Pair<Integer, Integer> pair : getWaitlist()) {
 			if (pair.getKey() == p) {
 				waitlist.remove(pair);
+				break;
 			}
 		}
 	}
