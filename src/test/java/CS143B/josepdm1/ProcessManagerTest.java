@@ -117,7 +117,7 @@ public class ProcessManagerTest {
             System.out.println(processManager.toString());
 
             assert firstProcess.getResources().size() == 0;
-            assert secondProcess.getResources().size() == 2;
+            assert secondProcess.getResources().size() == 3;
             assert processManager.getCurrentProcess() == secondProcess;
 
             /*** unblocking a LOWER priority process ***/

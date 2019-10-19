@@ -156,15 +156,13 @@ public class Manager {
 
 		//unblock process that's waiting
 		Queue<Pair<Integer, Integer>>  resourceWaitlist = resource.getWaitlist();
-		while (!resourceWaitlist.isEmpty() && resource.getState() > 0) {
+
+		if (!resourceWaitlist.isEmpty() && resource.getState() > 0) {
 			Pair<Integer, Integer> pair = resourceWaitlist.peek();
 			process = processes[pair.getKey()];
 			int requestedUnits = pair.getValue();
 			if (requestedUnits <= resource.getState()) {
 				unblock(r);
-			}
-			else {
-				break;
 			}
 		}
 //		return String.format("resource %s  released", r) + "\n" + scheduler();
@@ -231,7 +229,7 @@ public class Manager {
 				if (leftoverUnits > 0) {
 					p.getResources().add(new Pair<Integer, Integer>(r, leftoverUnits));
 				}
-				return leftoverUnits;
+				return n;
 			}
 		}
 		throw new RCBException( String.format("Process %s  isn't allocated resource %s ", p.getIndex(), r));
