@@ -1,6 +1,6 @@
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: in     RUNNING: 0
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=0, 
 currentSlot=1, 
 readyList=[[0], [], []], 
@@ -13,9 +13,9 @@ RCB{state=2, waitlist=[]},
 RCB{state=3, waitlist=[]}], 
 size=1
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: cr 1     RUNNING: 0
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=2, 
 readyList=[[0], [1], []], 
@@ -29,9 +29,9 @@ RCB{state=2, waitlist=[]},
 RCB{state=3, waitlist=[]}], 
 size=2
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: cr 1     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=3, 
 readyList=[[0], [1, 2], []], 
@@ -46,9 +46,9 @@ RCB{state=2, waitlist=[]},
 RCB{state=3, waitlist=[]}], 
 size=3
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rq 2 1     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=3, 
 readyList=[[0], [1, 2], []], 
@@ -63,9 +63,9 @@ RCB{state=1, waitlist=[]},
 RCB{state=3, waitlist=[]}], 
 size=3
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=3, 
 readyList=[[0], [2, 1], []], 
@@ -80,9 +80,9 @@ RCB{state=1, waitlist=[]},
 RCB{state=3, waitlist=[]}], 
 size=3
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: cr 2     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=3, 
 currentSlot=4, 
 readyList=[[0], [2, 1], [3]], 
@@ -98,9 +98,9 @@ RCB{state=1, waitlist=[]},
 RCB{state=3, waitlist=[]}], 
 size=4
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rq 2 2     RUNNING: 3
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=4, 
 readyList=[[0], [2, 1], []], 
@@ -116,9 +116,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=3, waitlist=[]}], 
 size=4
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=4, 
 readyList=[[0], [1, 2], []], 
@@ -134,9 +134,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=3, waitlist=[]}], 
 size=4
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rq 1 1     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=4, 
 readyList=[[0], [1, 2], []], 
@@ -152,9 +152,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=3, waitlist=[]}], 
 size=4
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: cr 1     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=5, 
 readyList=[[0], [1, 2, 4], []], 
@@ -171,9 +171,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=3, waitlist=[]}], 
 size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=5, 
 readyList=[[0], [2, 4, 1], []], 
@@ -190,9 +190,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=3, waitlist=[]}], 
 size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=5, 
 readyList=[[0], [4, 1, 2], []], 
@@ -209,9 +209,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=3, waitlist=[]}], 
 size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rq 3 3     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=5, 
 readyList=[[0], [4, 1, 2], []], 
@@ -228,9 +228,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[]}], 
 size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=5, 
 readyList=[[0], [1, 2, 4], []], 
@@ -247,9 +247,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[]}], 
 size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rq 3 1     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=5, 
 readyList=[[0], [2, 4], []], 
@@ -266,9 +266,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1]}], 
 size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=5, 
 readyList=[[0], [4, 2], []], 
@@ -285,9 +285,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1]}], 
 size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: cr 1     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=6, 
 readyList=[[0], [4, 2, 5], []], 
@@ -305,9 +305,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1]}], 
 size=6
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: cr 1     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=7, 
 readyList=[[0], [4, 2, 5, 6], []], 
@@ -326,9 +326,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=7, 
 readyList=[[0], [2, 5, 6, 4], []], 
@@ -347,9 +347,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=5, 
 currentSlot=7, 
 readyList=[[0], [5, 6, 4, 2], []], 
@@ -368,9 +368,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rq 0 1     RUNNING: 5
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=5, 
 currentSlot=7, 
 readyList=[[0], [5, 6, 4, 2], []], 
@@ -389,9 +389,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rq 3 2     RUNNING: 5
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=6, 
 currentSlot=7, 
 readyList=[[0], [6, 4, 2], []], 
@@ -410,9 +410,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1, 5=2]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 6
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=7, 
 readyList=[[0], [4, 2, 6], []], 
@@ -431,9 +431,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1, 5=2]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=7, 
 readyList=[[0], [2, 6, 4], []], 
@@ -452,9 +452,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1, 5=2]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=6, 
 currentSlot=7, 
 readyList=[[0], [6, 4, 2], []], 
@@ -473,9 +473,9 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1, 5=2]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 6
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=7, 
 readyList=[[0], [4, 2, 6], []], 
@@ -494,93 +494,93 @@ RCB{state=1, waitlist=[3=2]},
 RCB{state=0, waitlist=[1=1, 5=2]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rl 3 1     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=7, 
-readyList=[[0], [4, 2, 6, 1], []], 
+readyList=[[0], [4, 2, 6, 1, 5], []], 
 processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
 PCB{state=1, parent=0, children=[2, 4], resources=[2=1, 1=1, 3=1], priority=1, index=1}, 
 PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[5, 6], resources=[3=2], priority=1, index=4}, 
-PCB{state=0, parent=4, children=[], resources=[0=1], priority=1, index=5}, 
+PCB{state=1, parent=4, children=[], resources=[0=1, 3=2], priority=1, index=5}, 
 PCB{state=1, parent=4, children=[], resources=[], priority=1, index=6}, null, null, null, null, null, null, null, null, null], 
 resources=[
 RCB{state=0, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[5=2]}], 
+RCB{state=0, waitlist=[]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=7, 
-readyList=[[0], [2, 6, 1, 4], []], 
+readyList=[[0], [2, 6, 1, 5, 4], []], 
 processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
 PCB{state=1, parent=0, children=[2, 4], resources=[2=1, 1=1, 3=1], priority=1, index=1}, 
 PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[5, 6], resources=[3=2], priority=1, index=4}, 
-PCB{state=0, parent=4, children=[], resources=[0=1], priority=1, index=5}, 
+PCB{state=1, parent=4, children=[], resources=[0=1, 3=2], priority=1, index=5}, 
 PCB{state=1, parent=4, children=[], resources=[], priority=1, index=6}, null, null, null, null, null, null, null, null, null], 
 resources=[
 RCB{state=0, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[5=2]}], 
+RCB{state=0, waitlist=[]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=6, 
 currentSlot=7, 
-readyList=[[0], [6, 1, 4, 2], []], 
+readyList=[[0], [6, 1, 5, 4, 2], []], 
 processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
 PCB{state=1, parent=0, children=[2, 4], resources=[2=1, 1=1, 3=1], priority=1, index=1}, 
 PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[5, 6], resources=[3=2], priority=1, index=4}, 
-PCB{state=0, parent=4, children=[], resources=[0=1], priority=1, index=5}, 
+PCB{state=1, parent=4, children=[], resources=[0=1, 3=2], priority=1, index=5}, 
 PCB{state=1, parent=4, children=[], resources=[], priority=1, index=6}, null, null, null, null, null, null, null, null, null], 
 resources=[
 RCB{state=0, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[5=2]}], 
+RCB{state=0, waitlist=[]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 6
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=7, 
-readyList=[[0], [1, 4, 2, 6], []], 
+readyList=[[0], [1, 5, 4, 2, 6], []], 
 processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
 PCB{state=1, parent=0, children=[2, 4], resources=[2=1, 1=1, 3=1], priority=1, index=1}, 
 PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[5, 6], resources=[3=2], priority=1, index=4}, 
-PCB{state=0, parent=4, children=[], resources=[0=1], priority=1, index=5}, 
+PCB{state=1, parent=4, children=[], resources=[0=1, 3=2], priority=1, index=5}, 
 PCB{state=1, parent=4, children=[], resources=[], priority=1, index=6}, null, null, null, null, null, null, null, null, null], 
 resources=[
 RCB{state=0, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[5=2]}], 
+RCB{state=0, waitlist=[]}], 
 size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: de 4     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=4, 
 readyList=[[0], [1, 2], []], 
@@ -590,15 +590,15 @@ PCB{state=1, parent=0, children=[2], resources=[2=1, 1=1, 3=1], priority=1, inde
 PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, null, null, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[]}, 
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[]}], 
-size=7
+RCB{state=4, waitlist=[]}], 
+size=4
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=4, 
 readyList=[[0], [2, 1], []], 
@@ -608,15 +608,15 @@ PCB{state=1, parent=0, children=[2], resources=[2=1, 1=1, 3=1], priority=1, inde
 PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, null, null, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[]}, 
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[]}], 
-size=7
+RCB{state=4, waitlist=[]}], 
+size=4
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=4, 
 readyList=[[0], [1, 2], []], 
@@ -626,15 +626,15 @@ PCB{state=1, parent=0, children=[2], resources=[2=1, 1=1, 3=1], priority=1, inde
 PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, null, null, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[]}, 
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[]}], 
-size=7
+RCB{state=4, waitlist=[]}], 
+size=4
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: cr 1     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=5, 
 readyList=[[0], [1, 2, 4], []], 
@@ -645,15 +645,15 @@ PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2},
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, null, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[]}, 
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[]}], 
-size=8
+RCB{state=4, waitlist=[]}], 
+size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=5, 
 readyList=[[0], [2, 4, 1], []], 
@@ -664,15 +664,15 @@ PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2},
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, null, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[]}, 
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[]}], 
-size=8
+RCB{state=4, waitlist=[]}], 
+size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=5, 
 readyList=[[0], [4, 1, 2], []], 
@@ -683,15 +683,15 @@ PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2},
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, null, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[]}, 
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[]}], 
-size=8
+RCB{state=4, waitlist=[]}], 
+size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: to     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=5, 
 readyList=[[0], [1, 2, 4], []], 
@@ -702,15 +702,15 @@ PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2},
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, null, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[]}, 
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=1, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[]}], 
-size=8
+RCB{state=4, waitlist=[]}], 
+size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rq 2 1     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=5, 
 readyList=[[0], [1, 2, 4], []], 
@@ -721,15 +721,15 @@ PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2},
 PCB{state=0, parent=2, children=[], resources=[], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, null, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[]}, 
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=0, waitlist=[3=2]}, 
-RCB{state=0, waitlist=[]}], 
-size=8
+RCB{state=4, waitlist=[]}], 
+size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rl 2 2     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=3, 
 currentSlot=5, 
 readyList=[[0], [1, 2, 4], [3]], 
@@ -740,15 +740,15 @@ PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2},
 PCB{state=1, parent=2, children=[], resources=[2=2], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, null, null, null, null, null, null, null, null, null, null, null], 
 resources=[
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[]}], 
-size=8
+RCB{state=4, waitlist=[]}], 
+size=5
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: cr 1     RUNNING: 3
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=3, 
 currentSlot=6, 
 readyList=[[0], [1, 2, 4, 5], [3]], 
@@ -760,15 +760,95 @@ PCB{state=1, parent=2, children=[5], resources=[2=2], priority=2, index=3},
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
 PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
 resources=[
+RCB{state=1, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[]}], 
-size=9
+RCB{state=4, waitlist=[]}], 
+size=6
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: input: rq 3 2     RUNNING: 3
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Manager{ RUNNING=3, 
+currentSlot=6, 
+readyList=[[0], [1, 2, 4, 5], [3]], 
+processes=[
+PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
+PCB{state=1, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
+PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=1, parent=2, children=[5], resources=[2=2, 3=2], priority=2, index=3}, 
+PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
+PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
+resources=[
+RCB{state=1, waitlist=[]}, 
+RCB{state=0, waitlist=[]}, 
+RCB{state=0, waitlist=[]}, 
+RCB{state=2, waitlist=[]}], 
+size=6
+
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 0 1     RUNNING: 3
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Manager{ RUNNING=3, 
+currentSlot=6, 
+readyList=[[0], [1, 2, 4, 5], [3]], 
+processes=[
+PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
+PCB{state=1, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
+PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=1, parent=2, children=[5], resources=[2=2, 3=2, 0=1], priority=2, index=3}, 
+PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
+PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
+resources=[
+RCB{state=0, waitlist=[]}, 
+RCB{state=0, waitlist=[]}, 
+RCB{state=0, waitlist=[]}, 
+RCB{state=2, waitlist=[]}], 
+size=6
+
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: to     RUNNING: 3
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Manager{ RUNNING=3, 
+currentSlot=6, 
+readyList=[[0], [1, 2, 4, 5], [3]], 
+processes=[
+PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
+PCB{state=1, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
+PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=1, parent=2, children=[5], resources=[2=2, 3=2, 0=1], priority=2, index=3}, 
+PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
+PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
+resources=[
+RCB{state=0, waitlist=[]}, 
+RCB{state=0, waitlist=[]}, 
+RCB{state=0, waitlist=[]}, 
+RCB{state=2, waitlist=[]}], 
+size=6
+
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 3 1     RUNNING: 3
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Manager{ RUNNING=3, 
+currentSlot=6, 
+readyList=[[0], [1, 2, 4, 5], [3]], 
+processes=[
+PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
+PCB{state=1, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
+PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=1, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
+PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
+PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
+resources=[
+RCB{state=0, waitlist=[]}, 
+RCB{state=0, waitlist=[]}, 
+RCB{state=0, waitlist=[]}, 
+RCB{state=1, waitlist=[]}], 
+size=6
+
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 2 2     RUNNING: 3
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=1, 
 currentSlot=6, 
 readyList=[[0], [1, 2, 4, 5], []], 
@@ -776,115 +856,192 @@ processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
 PCB{state=1, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
 PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
-PCB{state=0, parent=2, children=[5], resources=[2=2], priority=2, index=3}, 
+PCB{state=0, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
 PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
 resources=[
 RCB{state=0, waitlist=[]}, 
 RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[3=2]}], 
-size=9
+RCB{state=0, waitlist=[3=2]}, 
+RCB{state=1, waitlist=[]}], 
+size=6
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
-INFO: input: rq 0 1     RUNNING: 1
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 3 1     RUNNING: 1
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Manager{ RUNNING=1, 
+currentSlot=6, 
+readyList=[[0], [1, 2, 4, 5], []], 
+processes=[
+PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
+PCB{state=1, parent=0, children=[2, 4], resources=[1=1, 3=2], priority=1, index=1}, 
+PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=0, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
+PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
+PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
+resources=[
+RCB{state=0, waitlist=[]}, 
+RCB{state=0, waitlist=[]}, 
+RCB{state=0, waitlist=[3=2]}, 
+RCB{state=0, waitlist=[]}], 
+size=6
+
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 1 1     RUNNING: 1
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=2, 
 currentSlot=6, 
 readyList=[[0], [2, 4, 5], []], 
 processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
-PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
+PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=2], priority=1, index=1}, 
 PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
-PCB{state=0, parent=2, children=[5], resources=[2=2], priority=2, index=3}, 
+PCB{state=0, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
 PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
 resources=[
+RCB{state=0, waitlist=[]}, 
 RCB{state=0, waitlist=[1=1]}, 
-RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[3=2]}], 
-size=9
+RCB{state=0, waitlist=[3=2]}, 
+RCB{state=0, waitlist=[]}], 
+size=6
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
-INFO: input: to     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 1 1     RUNNING: 2
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=4, 
 currentSlot=6, 
-readyList=[[0], [4, 5, 2], []], 
+readyList=[[0], [4, 5], []], 
 processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
-PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
-PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
-PCB{state=0, parent=2, children=[5], resources=[2=2], priority=2, index=3}, 
+PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=2], priority=1, index=1}, 
+PCB{state=0, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=0, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
 PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
 PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[1=1]}, 
 RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[3=2]}], 
-size=9
+RCB{state=0, waitlist=[1=1, 2=1]}, 
+RCB{state=0, waitlist=[3=2]}, 
+RCB{state=0, waitlist=[]}], 
+size=6
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
-INFO: input: rq 3 1     RUNNING: 4
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
-INFO: Manager{ RUNNING=5, 
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: de 1     RUNNING: 4
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Error with handling a PCB: Process 1 is not a child of process 4
+	at CS143B.josepdm1.Manager.destroy(Manager.java:111)
+	at CS143B.josepdm1.Shell.main(Shell.java:73)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:51)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:52)
+
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Manager{ RUNNING=4, 
 currentSlot=6, 
-readyList=[[0], [5, 2], []], 
+readyList=[[0], [4, 5], []], 
 processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
-PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
-PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
-PCB{state=0, parent=2, children=[5], resources=[2=2], priority=2, index=3}, 
-PCB{state=0, parent=1, children=[], resources=[], priority=1, index=4}, 
+PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=2], priority=1, index=1}, 
+PCB{state=0, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=0, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
+PCB{state=1, parent=1, children=[], resources=[], priority=1, index=4}, 
 PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[1=1]}, 
 RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[3=2, 4=1]}], 
-size=9
+RCB{state=0, waitlist=[1=1, 2=1]}, 
+RCB{state=0, waitlist=[3=2]}, 
+RCB{state=0, waitlist=[]}], 
+size=6
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
-INFO: input: rq 2 2     RUNNING: 5
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
-INFO: Manager{ RUNNING=2, 
-currentSlot=6, 
-readyList=[[0], [2], []], 
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: cr 1     RUNNING: 4
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Manager{ RUNNING=4, 
+currentSlot=7, 
+readyList=[[0], [4, 5, 6], []], 
 processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
-PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
-PCB{state=1, parent=1, children=[3], resources=[], priority=1, index=2}, 
-PCB{state=0, parent=2, children=[5], resources=[2=2], priority=2, index=3}, 
-PCB{state=0, parent=1, children=[], resources=[], priority=1, index=4}, 
-PCB{state=0, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
+PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=2], priority=1, index=1}, 
+PCB{state=0, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=0, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
+PCB{state=1, parent=1, children=[6], resources=[], priority=1, index=4}, 
+PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, 
+PCB{state=1, parent=4, children=[], resources=[], priority=1, index=6}, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[1=1]}, 
 RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[5=2]}, 
-RCB{state=0, waitlist=[3=2, 4=1]}], 
-size=9
+RCB{state=0, waitlist=[1=1, 2=1]}, 
+RCB{state=0, waitlist=[3=2]}, 
+RCB{state=0, waitlist=[]}], 
+size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
-INFO: input: rq 3 1     RUNNING: 2
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 0 1     RUNNING: 4
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Manager{ RUNNING=5, 
+currentSlot=7, 
+readyList=[[0], [5, 6], []], 
+processes=[
+PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
+PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=2], priority=1, index=1}, 
+PCB{state=0, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=0, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
+PCB{state=0, parent=1, children=[6], resources=[], priority=1, index=4}, 
+PCB{state=1, parent=3, children=[], resources=[], priority=1, index=5}, 
+PCB{state=1, parent=4, children=[], resources=[], priority=1, index=6}, null, null, null, null, null, null, null, null, null], 
+resources=[
+RCB{state=0, waitlist=[4=1]}, 
+RCB{state=0, waitlist=[1=1, 2=1]}, 
+RCB{state=0, waitlist=[3=2]}, 
+RCB{state=0, waitlist=[]}], 
+size=7
+
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 1 1     RUNNING: 5
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: Manager{ RUNNING=6, 
+currentSlot=7, 
+readyList=[[0], [6], []], 
+processes=[
+PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
+PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=2], priority=1, index=1}, 
+PCB{state=0, parent=1, children=[3], resources=[], priority=1, index=2}, 
+PCB{state=0, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
+PCB{state=0, parent=1, children=[6], resources=[], priority=1, index=4}, 
+PCB{state=0, parent=3, children=[], resources=[], priority=1, index=5}, 
+PCB{state=1, parent=4, children=[], resources=[], priority=1, index=6}, null, null, null, null, null, null, null, null, null], 
+resources=[
+RCB{state=0, waitlist=[4=1]}, 
+RCB{state=0, waitlist=[1=1, 2=1, 5=1]}, 
+RCB{state=0, waitlist=[3=2]}, 
+RCB{state=0, waitlist=[]}], 
+size=7
+
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 2 2     RUNNING: 6
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
 INFO: Manager{ RUNNING=0, 
-currentSlot=6, 
+currentSlot=7, 
 readyList=[[0], [], []], 
 processes=[
 PCB{state=1, parent=null, children=[1], resources=[], priority=0, index=0}, 
-PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=1], priority=1, index=1}, 
+PCB{state=0, parent=0, children=[2, 4], resources=[1=1, 3=2], priority=1, index=1}, 
 PCB{state=0, parent=1, children=[3], resources=[], priority=1, index=2}, 
-PCB{state=0, parent=2, children=[5], resources=[2=2], priority=2, index=3}, 
-PCB{state=0, parent=1, children=[], resources=[], priority=1, index=4}, 
-PCB{state=0, parent=3, children=[], resources=[], priority=1, index=5}, null, null, null, null, null, null, null, null, null, null], 
+PCB{state=0, parent=2, children=[5], resources=[2=2, 0=1, 3=3], priority=2, index=3}, 
+PCB{state=0, parent=1, children=[6], resources=[], priority=1, index=4}, 
+PCB{state=0, parent=3, children=[], resources=[], priority=1, index=5}, 
+PCB{state=0, parent=4, children=[], resources=[], priority=1, index=6}, null, null, null, null, null, null, null, null, null], 
 resources=[
-RCB{state=0, waitlist=[1=1]}, 
-RCB{state=0, waitlist=[]}, 
-RCB{state=0, waitlist=[5=2]}, 
-RCB{state=0, waitlist=[3=2, 4=1, 2=1]}], 
-size=9
+RCB{state=0, waitlist=[4=1]}, 
+RCB{state=0, waitlist=[1=1, 2=1, 5=1]}, 
+RCB{state=0, waitlist=[3=2, 6=2]}, 
+RCB{state=0, waitlist=[]}], 
+size=7
 
-Oct 19, 2019 12:43:04 AM CS143B.josepdm1.Shell main
-INFO: input: rq 1 1     RUNNING: 0
+Oct 20, 2019 12:58:40 AM CS143B.josepdm1.Shell main
+INFO: input: rq 3 3     RUNNING: 0

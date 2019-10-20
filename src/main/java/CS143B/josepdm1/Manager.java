@@ -11,7 +11,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-//todo : add error codes class
 public class Manager {
 	private final static Logger LOG = Logger.getLogger(Manager.class.getName());
 	static {
@@ -112,10 +111,8 @@ public class Manager {
 		throw new PCBException("Process " + p + " is not a child of process " + getCurrentProcess().getIndex());
 	}
 
-	//todo testing
 	public String request(int r, int k) {
 		//todo check for errors
-		//error ? process has already requested units, just add 1 more
 		RCB resource = resources[r];
 		PCB process = getCurrentProcess();
 		int p = process.getIndex();
@@ -124,21 +121,17 @@ public class Manager {
 		if (k <= resource.getState()) {
 			resource.removeUnits(k);
 			process.addResource(r, k);
-//			return String.format("resource %s  allocated", r);
-//			return String.format("%s ", r);
 		}
 		//not enough units available
 		else {
 			process.setState(PCB.BLOCKED);
 			readyList[ process.getPriority() ].remove(p);
 			resource.getWaitlist().add(new Pair<Integer, Integer>(p, k));
-//			return String.format("process %s  blocked", p) + "\n" + scheduler();
 		}
 		return scheduler();
 	}
 
 	//current process releases n units of resource r
-	//todo testing
 	public String release(int r, int n) throws PCBException, RCBException {
 		RCB resource = resources[r];
 		PCB process = getCurrentProcess();
@@ -151,21 +144,13 @@ public class Manager {
 		}
 
 		//process will release enough units, adds back to resource
-		int leftoverUnits = releaseResource(process, r, n);
-		resource.addUnits(leftoverUnits);
+		releaseResource(process, r, n);
 
 		//unblock process that's waiting
-		Queue<Pair<Integer, Integer>>  resourceWaitlist = resource.getWaitlist();
-
-		if (!resourceWaitlist.isEmpty() && resource.getState() > 0) {
-			Pair<Integer, Integer> pair = resourceWaitlist.peek();
-			process = processes[pair.getKey()];
-			int requestedUnits = pair.getValue();
-			if (requestedUnits <= resource.getState()) {
-				unblock(r);
-			}
+		while ( canUnblock(r) ) {
+			unblock(r);
 		}
-//		return String.format("resource %s  released", r) + "\n" + scheduler();
+
 		return scheduler();
 	}
 
@@ -185,7 +170,7 @@ public class Manager {
 	 *  Helper Functions
 	 *  ****************/
 	//destroy process P
-	private int recursiveDestroy(int p) throws RCBException, PCBException {
+	private int recursiveDestroy(int p) throws RCBException {
 		PCB process = processes[p];
 		Queue<Integer> childList = process.getChildren();
 		int total = 0;
@@ -204,28 +189,44 @@ public class Manager {
 		readyList[ process.getPriority() ].remove(p);
 
 		//release resources
-		for (Pair<Integer, Integer> pair : process.getResources()) {
+		//t
+		while (!process.getResources().isEmpty()) {
+			//todo refactor - searches through resources list twice
+			Pair<Integer, Integer> pair = process.getResources().peek();
 			int r = pair.getKey();
 			int units = pair.getValue();
-			releaseResource(process, r, units);
-			unblock(r);
+			fullRelease(process, r, units);
+			while ( canUnblock(r) ) {
+				unblock(r);
+			}
 		}
 
 		//remove from other waitlists
 		removeFromWaitlists(p);
 
-		//todo after release, give units to other resources
 		//release PCB
 		processes[p] = null;
+		--size;
 		return total + 1;
 	}
-
+	private void fullRelease(PCB p, int r, int n) throws RCBException{
+		for (Pair<Integer, Integer> pair: p.getResources()) {
+			if (pair.getKey() == r) {
+				int units = pair.getValue();
+				p.getResources().remove(pair);
+				resources[r].addUnits(units);
+				return;
+			}
+		}
+		throw new RCBException( String.format("Process %s  isn't allocated resource %s ", p.getIndex(), r));
+	}
 	private int releaseResource(PCB p, int r, int n) throws RCBException{
 		for (Pair<Integer, Integer> pair: p.getResources()) {
 			if (pair.getKey() == r) {
 				int units = pair.getValue();
 				int leftoverUnits = units - n;
 				p.getResources().remove(pair);
+				resources[r].addUnits(units);
 				if (leftoverUnits > 0) {
 					p.getResources().add(new Pair<Integer, Integer>(r, leftoverUnits));
 				}
@@ -234,7 +235,6 @@ public class Manager {
 		}
 		throw new RCBException( String.format("Process %s  isn't allocated resource %s ", p.getIndex(), r));
 	}
-
 	private PCB schedule() {
 		return getCurrentProcess();
 	}
@@ -253,7 +253,6 @@ public class Manager {
 				return i;
 			}
 		}
-		//TODO include descriptive error
 		return -1;
 	}
 	private boolean notBlocked(int p) {
@@ -273,6 +272,18 @@ public class Manager {
 		}
 	}
 
+	//return whether Resource R can unblock a process waiting
+	private boolean canUnblock(int r) {
+		RCB resource = resources[r];
+		Queue<Pair<Integer, Integer>> resourceWaitlist = resource.getWaitlist();
+		if (!resourceWaitlist.isEmpty() && resource.getState() > 0) {
+			Pair<Integer, Integer> pair = resourceWaitlist.peek();
+			PCB process = processes[pair.getKey()];
+			int requestedUnits = pair.getValue();
+			return requestedUnits <= resource.getState();
+		}
+		return false;
+	}
 	//unblock the process from resource's waitlist
 	private void unblock(int r) {
 		RCB resource = resources[r];
@@ -296,5 +307,9 @@ public class Manager {
 			process.setState(PCB.READY);
 			readyList[ process.getPriority() ].add(process.getIndex());
 		}
+	}
+
+	public boolean isBlocked(int r) {
+		return resources[r].getState() == 0;
 	}
 }

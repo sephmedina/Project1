@@ -5,6 +5,7 @@ import CS143B.josepdm1.Exceptions.RCBException;
 import javafx.util.Pair;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.ExceptionUtils;
 
 public class ProcessManagerTest {
     @DisplayName("Test Manager.init()")
@@ -51,6 +52,30 @@ public class ProcessManagerTest {
     @Test
     void testDestroy() {
         Manager processManager = new Manager();
+
+        try {
+            System.out.println("Testing: Destroy parent AND children (remove all from waitlists)");
+            int r = 3;
+            processManager.create(1);
+            processManager.request(r, 1);
+            PCB current = processManager.getCurrentProcess();
+            assert current.getResources().size() == 1;
+            System.out.println("should be two processes: \n" + processManager.toString());
+            processManager.create(2); //2nd process is child of 1st
+            processManager.request(1, 1);
+            processManager.request(r, 3);
+
+            System.out.println("After request, should timeout:\n" + processManager.toString());
+
+            processManager.destroy(1);
+            assert !processManager.isBlocked(r);
+            assert processManager.getSize() == 1;
+
+            System.out.println("finished: \n" + processManager.toString());
+        } catch (Exception e) {
+            System.out.println(ExceptionUtils.readStackTrace(e));
+            assert false;
+        }
     }
 
     @DisplayName("Test Manager.request()")
