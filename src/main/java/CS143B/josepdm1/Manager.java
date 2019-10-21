@@ -16,7 +16,7 @@ public class Manager {
 	static {
 		FileHandler fh = null;
 		try {
-			fh = new FileHandler("log.txt");
+			fh = new FileHandler("LogManager.txt");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -106,6 +106,7 @@ public class Manager {
 		if (getCurrentProcess().getChildren().contains(p) || p == getCurrentProcess().getIndex()) {
 			currentSlot = p;
 			recursiveDestroy(p);
+			LOG.info("Destroying " + p + "\n" + Arrays.toString(readyList) + Arrays.toString(processes));
 			return scheduler();
 		}
 		throw new PCBException("Process " + p + " is not a child of process " + getCurrentProcess().getIndex());
@@ -171,13 +172,15 @@ public class Manager {
 	 *  ****************/
 	//destroy process P
 	private int recursiveDestroy(int p) throws RCBException {
+		LOG.info("recursively destroying: " + p);
+		LOG.info(processes[p].toString());
 		PCB process = processes[p];
 		Queue<Integer> childList = process.getChildren();
 		int total = 0;
 
 		//destroy P's children
 		while (!childList.isEmpty()) {
-			int child = childList.remove();
+			int child = childList.peek();
 			total += recursiveDestroy(child);
 		}
 
@@ -188,8 +191,10 @@ public class Manager {
 		//remove from ready list
 		readyList[ process.getPriority() ].remove(p);
 
+		//remove from other waitlists
+		removeFromWaitlists(p);
+
 		//release resources
-		//t
 		while (!process.getResources().isEmpty()) {
 			//todo refactor - searches through resources list twice
 			Pair<Integer, Integer> pair = process.getResources().peek();
@@ -200,9 +205,6 @@ public class Manager {
 				unblock(r);
 			}
 		}
-
-		//remove from other waitlists
-		removeFromWaitlists(p);
 
 		//release PCB
 		processes[p] = null;
@@ -226,7 +228,7 @@ public class Manager {
 				int units = pair.getValue();
 				int leftoverUnits = units - n;
 				p.getResources().remove(pair);
-				resources[r].addUnits(units);
+				resources[r].addUnits(n);
 				if (leftoverUnits > 0) {
 					p.getResources().add(new Pair<Integer, Integer>(r, leftoverUnits));
 				}
@@ -241,7 +243,7 @@ public class Manager {
 
 	public PCB getCurrentProcess() {
 		for (int i = readyList.length - 1;   ; --i) {
-			if (readyList[i].peek() != null) {
+			if (readyList[i] != null && !readyList[i].isEmpty()) {
 				return processes[ readyList[i].peek() ];
 			}
 		}
@@ -278,7 +280,6 @@ public class Manager {
 		Queue<Pair<Integer, Integer>> resourceWaitlist = resource.getWaitlist();
 		if (!resourceWaitlist.isEmpty() && resource.getState() > 0) {
 			Pair<Integer, Integer> pair = resourceWaitlist.peek();
-			PCB process = processes[pair.getKey()];
 			int requestedUnits = pair.getValue();
 			return requestedUnits <= resource.getState();
 		}
@@ -290,14 +291,14 @@ public class Manager {
 		if (resource.getWaitlist().isEmpty()) {
 			return;
 		}
-		Pair<Integer, Integer> pair = resource.getWaitlist().peek();
+
+		Pair<Integer, Integer> pair = resource.getWaitlist().remove();
 		PCB process = processes[pair.getKey()];
 		int units = pair.getValue();
 
 		//remove units from resource
 		resource.removeUnits(units);
 		Pair<Integer, Integer> resourcePair = new Pair<Integer, Integer>(r, units);
-		resource.getWaitlist().remove();
 
 		//add units to process
 		process.getResources().add(resourcePair);
