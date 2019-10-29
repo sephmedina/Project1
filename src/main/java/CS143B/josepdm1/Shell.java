@@ -82,6 +82,7 @@ public class Shell {
                 }
                 else if (cmd.equals("cr")) {
                     try {
+                    	if (value == 0) throw new PCBException("Only 1 process at 0th level");
                         System.out.print( processManager.create(value));
                     } catch (PCBException e) {
                         LOG.info( ExceptionUtils.getStackTrace(e) );

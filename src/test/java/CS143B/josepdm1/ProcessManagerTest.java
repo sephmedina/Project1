@@ -42,6 +42,7 @@ public class ProcessManagerTest {
             } catch (PCBException e) {
                 assert processManager.getSize() == 16;
             }
+            
         }
         catch (PCBException e) {
             e.printStackTrace();
@@ -72,6 +73,9 @@ public class ProcessManagerTest {
             assert processManager.getSize() == 1;
 
             System.out.println("finished: \n" + processManager.toString());
+            
+            /**** DESTROY processes that are blocking others ****/
+            //todo
         } catch (Exception e) {
             System.out.println(ExceptionUtils.readStackTrace(e));
             assert false;
@@ -146,7 +150,8 @@ public class ProcessManagerTest {
             assert processManager.getCurrentProcess() == secondProcess;
 
             /*** unblocking a LOWER priority process ***/
-
+            //lower process(es) should be unblocked, and put in readylists
+            
         } catch (PCBException e) {
 
         } catch (RCBException e) {

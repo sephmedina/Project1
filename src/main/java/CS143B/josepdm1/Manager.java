@@ -97,8 +97,6 @@ public class Manager {
 		
 		readyList[child.getPriority()].add(child.getIndex());
 		scheduler();
-//		return String.format("Process %s  is created", child.getIndex());
-//		return String.format("%s ", child.getIndex());
 		return scheduler();
 	}
 	
