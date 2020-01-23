@@ -104,6 +104,9 @@ public class ProcessManagerTest {
         } catch (PCBException e) {
 
         }
+        catch (RCBException e) {
+
+        }
 
     }
 

@@ -10,6 +10,10 @@ public class RCB {
 	private Integer state;
 	private int inventory;
 
+	public int getInventory() {
+		return inventory;
+	}
+
 	//list of processes blocked/waiting for this resource
 	private Queue<Pair<Integer, Integer>> waitlist;
 

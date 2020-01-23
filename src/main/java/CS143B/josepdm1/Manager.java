@@ -110,9 +110,19 @@ public class Manager {
 		throw new PCBException("Process " + p + " is not a child of process " + getCurrentProcess().getIndex());
 	}
 
-	public String request(int r, int k) {
+	public String request(int r, int k) throws PCBException, RCBException{
+		if (getCurrentProcess().getIndex() == 0) {
+			throw new PCBException("Process 0 cannot request resources");
+		}
+		if (r < 0 || r >= R) {
+			throw new RCBException("Resource out of bounds");
+		}
+
 		//todo check for errors
 		RCB resource = resources[r];
+		if (k > resource.getInventory()) {
+			throw new RCBException(String.format("Resource cannot hold more than %s", k));
+		}
 		PCB process = getCurrentProcess();
 		int p = process.getIndex();
 
@@ -132,6 +142,10 @@ public class Manager {
 
 	//current process releases n units of resource r
 	public String release(int r, int n) throws PCBException, RCBException {
+		if (r < 0 || r >= R) {
+			throw new RCBException("Resource out of bounds");
+		}
+
 		RCB resource = resources[r];
 		PCB process = getCurrentProcess();
 		if (resource == null || process == null) {

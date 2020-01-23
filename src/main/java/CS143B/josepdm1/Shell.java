@@ -31,13 +31,13 @@ public class Shell {
         Scanner scanner = new Scanner(file);
 
         //writing to file
-        final String UCIiD = "70398647.txt";
+        final String UCIiD = "output.txt";
         PrintStream out = new PrintStream(new FileOutputStream(UCIiD));
         System.setOut(out);
         Manager processManager = new Manager();
         int value;
         int resource;
-
+        boolean firstIn = false;
         /*** PROCESSING INPUT ***/
         while ( scanner.hasNextLine() ) {
             String line = scanner.nextLine();
@@ -53,11 +53,17 @@ public class Shell {
                     System.out.print( processManager.timeout() );
                 }
                 else if (cmd.equals("in")) {
-                    System.out.print( processManager.init() );
+                    if (firstIn)
+                        System.out.print("\n" + processManager.init() );
+                    else {
+                        firstIn = true;
+                        System.out.print(processManager.init() );
+
+                    }
                 }
                 else {
-                    System.out.println(-1);
-                }
+                        System.out.print(-1);
+                                        }
 
             }
             else if (tokens.length == 2) {
@@ -65,7 +71,7 @@ public class Shell {
                 try {
                     value = getInteger(tokens[1]);
                 } catch (NumberFormatException e) {
-                    System.out.println(-1);
+                        System.out.print(-1);
                     continue;
                 }
                 if (cmd.equals("de"))  {
@@ -73,11 +79,11 @@ public class Shell {
                         System.out.print( processManager.destroy(value));
                     } catch (RCBException e) {
                         LOG.info(ExceptionUtils.getStackTrace(e));
-                        System.out.println(-1);
-                    }
+                        System.out.print(-1);
+                                            }
                     catch (PCBException e) {
                         LOG.info( ExceptionUtils.getStackTrace(e) );
-                        System.out.println(-1);
+                        System.out.print(-1);
                     }
                 }
                 else if (cmd.equals("cr")) {
@@ -86,34 +92,46 @@ public class Shell {
                         System.out.print( processManager.create(value));
                     } catch (PCBException e) {
                         LOG.info( ExceptionUtils.getStackTrace(e) );
-                        System.out.println(-1);
-                    }
+                        System.out.print(-1);
+                                            }
                 }
                 else {
-                    System.out.println(-1);
-                }
+                        System.out.print(-1);
+                                        }
             }
             else if (tokens.length == 3) {
             	try {
                     resource = getInteger(tokens[1]);
                     value = getInteger(tokens[2]);
                 } catch (NumberFormatException e) {
-                    System.out.println(-1);
+                        System.out.print(-1);
                     continue;
                 }
                 if (cmd.equals("rq")) {
-                    System.out.print( processManager.request(resource, value));
+                    try {
+                        System.out.print( processManager.request(resource, value));
+                    }
+                    catch (PCBException e) {
+                        LOG.info( ExceptionUtils.getStackTrace(e) );
+                        System.out.print(-1);
+                        continue;
+                    }
+                    catch (RCBException e) {
+                        LOG.info( ExceptionUtils.getStackTrace(e) );
+                        System.out.print(-1);
+                        continue;
+                    }
                 }
                 else if (cmd.equals("rl")) {
                     try {
                         System.out.print( processManager.release(resource, value));
                     } catch (PCBException e) {
                         LOG.info( ExceptionUtils.getStackTrace(e) );
-                        System.out.println(-1);
+                        System.out.print(-1);
                         continue;
                     } catch (RCBException e) {
                         LOG.info( ExceptionUtils.getStackTrace(e) );
-                        System.out.println(-1);
+                        System.out.print(-1);
                         continue;
                     }
                 }
@@ -122,7 +140,7 @@ public class Shell {
             //bad input?
             else {
                 System.out.println(-1);
-                continue;
+continue;
             }
 //            System.out.println(processManager.toString() + "\n");
             LOG.info(processManager.toString() + "\n");

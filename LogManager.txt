@@ -1,0 +1,14 @@
+Nov 01, 2019 11:32:53 AM CS143B.josepdm1.Manager recursiveDestroy
+INFO: recursively destroying: 1
+Nov 01, 2019 11:32:53 AM CS143B.josepdm1.Manager recursiveDestroy
+INFO: 
+PCB{state=1, parent=0, children=[2], resources=[3=1], priority=1, index=1}
+Nov 01, 2019 11:32:53 AM CS143B.josepdm1.Manager recursiveDestroy
+INFO: recursively destroying: 2
+Nov 01, 2019 11:32:53 AM CS143B.josepdm1.Manager recursiveDestroy
+INFO: 
+PCB{state=0, parent=1, children=[], resources=[1=1], priority=2, index=2}
+Nov 01, 2019 11:32:53 AM CS143B.josepdm1.Manager destroy
+INFO: Destroying 1
+[[0], [], []][
+PCB{state=1, parent=null, children=[], resources=[], priority=0, index=0}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
